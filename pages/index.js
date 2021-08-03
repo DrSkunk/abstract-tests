@@ -1,6 +1,7 @@
-import Mutations from '../components/Mutations';
+import Line from '../components/Line';
 
 export default function Home() {
+  const form = 'line';
   const mutations = ['shape', 'border', 'horizontalLine', 'switch', 'color'];
   return (
     <div className="p-8 m-4 border-2 border-black bg-gray-50 flex justify-center">
@@ -9,7 +10,7 @@ export default function Home() {
         <div className="bg-gray-50" />
         <div className="bg-gray-50">Eindfiguren</div>
 
-        <Mutations
+        <Line
           input={[
             {
               border: true,
@@ -30,8 +31,9 @@ export default function Home() {
           ]}
           mutations={mutations}
           active={[false, true, false, false, true]}
+          form={form}
         />
-        <Mutations
+        <Line
           input={[
             {
               border: false,
@@ -43,24 +45,25 @@ export default function Home() {
             },
             {
               border: false,
-              size: 'large',
+              size: 'small',
               shape: 'hexagon',
-              color: 'white',
+              color: 'black',
               horizontalLine: true,
               verticalLine: false,
             },
           ]}
           mutations={mutations}
           active={[false, false, true, false, false]}
+          form={form}
         />
-        <Mutations
+        <Line
           input={[
             {
               border: false,
               size: 'small',
               shape: 'pentagram',
               color: 'white',
-              horizontalLine: true,
+              horizontalLine: false,
               verticalLine: false,
             },
             {
@@ -74,8 +77,9 @@ export default function Home() {
           ]}
           mutations={mutations}
           active={[true, true, false, false, false]}
+          form={form}
         />
-        <Mutations
+        <Line
           input={[
             {
               border: false,
@@ -96,6 +100,7 @@ export default function Home() {
           ]}
           mutations={mutations}
           active={[false, false, false, false, true]}
+          form={form}
         />
         {/* <Shape shape="circle" color="black" horizontalLine /> */}
         {/* <Shape shape="circle" color="black" border verticalLine />

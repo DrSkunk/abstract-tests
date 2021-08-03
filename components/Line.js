@@ -1,5 +1,6 @@
+import MutationsIndicator from './MutationsIndicator';
 import Shape from './Shape';
-// 'size', 'color', 'verticalLine', 'horizontalLine', 'shape'
+
 const reverse = {
   size: {
     small: 'large',
@@ -30,7 +31,7 @@ const reverse = {
   },
 };
 
-export default function Mutations({ mutations, active, input }) {
+export default function Line({ mutations, active, input, form }) {
   const inputItems = input.map(
     ({ border, shape, color, horizontalLine, verticalLine, size }, i) => (
       <Shape
@@ -66,29 +67,17 @@ export default function Mutations({ mutations, active, input }) {
       />
     );
   });
-  const switchIndex = mutations.indexOf('switch');
-  console.log('switchindex', switchIndex, active[switchIndex]);
 
-  if (switchIndex > -1 && active[switchIndex]) {
+  if (active[mutations.indexOf('switch')]) {
     outputItems.reverse();
   }
   return (
     <>
       <div className="bg-gray-50 flex flex-nowrap">{inputItems}</div>
-      <div className="flex justify-center items-center gap-4 px-4 bg-gray-50">
-        {active.map((isActive, i) => (
-          <Mutation key={i} isActive={isActive} />
-        ))}
+      <div className="flex justify-center items-center gap-4 px-8 bg-gray-50">
+        <MutationsIndicator form={form} active={active} />
       </div>
       <div className="bg-gray-50 flex flex-nowrap">{outputItems}</div>
     </>
-  );
-}
-
-function Mutation({ isActive }) {
-  return (
-    <div className="w-11 h-11 border border-black flex justify-center items-center">
-      {isActive && <div className="w-7 h-7 bg-black border" />}
-    </div>
   );
 }
